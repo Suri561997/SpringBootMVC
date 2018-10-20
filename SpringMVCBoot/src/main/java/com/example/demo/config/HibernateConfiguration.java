@@ -28,4 +28,5 @@ public class HibernateConfiguration {
 		return factoryBean;
 	}
 	
+	
 }

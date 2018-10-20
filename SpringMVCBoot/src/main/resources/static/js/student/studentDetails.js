@@ -18,10 +18,24 @@ app.controller('studentCtrl', function($scope, $http,$window) {
 	   console.log("........................createStudent...........");
 	   $http({
 	        method : "POST",
-	        url : "createStudent"
+	        url : "createStudent",
+	        params : {
+	        	"studentName" : $scope.studentName ,
+	        	"studentAge" : $scope.studentAge ,
+	        	"studentCollegeName" : $scope.studentCollegeName ,
+	        	"studentID" : $scope.studentID ,
+	        	"studentAcademicYear" : $scope.studentAcademicYear ,
+	        	"studentAddress" : $scope.studentAddress ,
+	        	"studentDepartment" : $scope.studentDepartment
+	        }
 	    }).then(function mySuccess(response) {
+	    	console.log("Successssss Student..............");
+	    	alert(response.data);
 	    	console.log(response.data);
-	        $scope.studentsList = response.data
+	    	console.log(response.status);
+	    	console.log(response.message);
+	    	console.log(response.statusText);
+	        //$scope.studentsList = response.data
 	    }, function myError(response) {
 	        $scope.myWelcome = response.statusText;
 	    });

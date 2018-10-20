@@ -41,14 +41,14 @@ public class StudentDetailsController {
 	@ResponseBody
 	public ResponseEntity<?> createStudent(@ModelAttribute("studentDetails") StudentDetails studentDetails){
 		System.out.println("----------"+studentDetails.getStudentName());
-		if(studentService.isStudentExist(studentDetails)) {
+		/*if(studentService.isStudentExist(studentDetails)) {
 			log.error("Unable to create. A Student with ID {} already exist,"+studentDetails.getStudentID());
 			return new ResponseEntity<String>("",HttpStatus.CONFLICT);
-		}
+		}*/
 		
 		studentService.saveStudent(studentDetails);
 		
-		return new ResponseEntity<String>("", HttpStatus.CREATED);
+		return new ResponseEntity<String>("Student Added Successfully.", HttpStatus.CREATED);
 	}
 	
 }

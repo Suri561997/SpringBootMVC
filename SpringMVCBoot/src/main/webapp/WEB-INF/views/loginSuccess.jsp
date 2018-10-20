@@ -1,21 +1,19 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <link rel="stylesheet" type="text/css" href="css/menu.css">
 
 <script type="text/javascript" src="js/student/studentDetails.js"></script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
 		//alert("Success Suri..");
 		$('#studentDetailsTable').DataTable({
-			dom: 'Bfrtip',
-	        buttons: [
-	            'copy', 'csv', 'excel', 'pdf', 'print'
-	        ]
+			dom : 'Bfrtip',
+			buttons : [ 'copy', 'csv', 'excel', 'pdf', 'print' ]
 		});
 	});
-</script>
+</script> -->
 
 <body ng-app="student" ng-controller="studentCtrl">
 
@@ -31,7 +29,7 @@
 				<li class="nav-item"><a class="nav-link" href="#"
 					ng-click="getAllStudentDetails()">Link 2</a></li>
 				<li class="nav-item"><a class="nav-link" href="#"
-				 ng-click="generatePDF()">Link 3</a></li>
+					ng-click="generatePDF()">Link 3</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -42,37 +40,65 @@
 				<div class="card">
 					<div class="card-header">Student Form</div>
 					<div class="card-body">
-					  <form:form id="studentForm" modelAttribute="stdDetails" action="showSuccessPage"  method="POST">
-						  <label>Student ID <span style="color: red;">*</span></label>
-						 <form:input path="studentID" ng-model="studentID" id="studentID" cssClass="form-control" 
-						     maxlength="5" onkeyup="integersOnly(this)"/>
-						<label>Student Name :</label>
-						<form:input path="studentName" id="studentName" ng-model="studentName"
-							cssClass="form-control" maxlength="30" onkeyup="validateCharacters(this)" />
-						<label>Student Age</label>
-						<form:input path="studentAge" id="studentAge" ng-model="studentAge"
-							cssClass="form-control" maxlength="2" onkeyup="integersOnly(this)" />
-						<label>Student College Name : </label>
-						<form:input path="studentCollegeName" id="studentCollegeName" ng-model="studentCollegeName"
-							cssClass="form-control" maxlength="40"/>
-						<label>Student Department</label>
-						<form:input path="studentDepartment" id="studentDepartment" ng-model="studentDepartment"
-							cssClass="form-control" maxlength="30"/>
-						<label>Student Academic-Year</label>
-						<form:input path="studentAcademicYear" id="studentAcademicYear" ng-model="studentAcademicYear"
-							cssClass="form-control" maxlength="10"/>
-						<label>Student Address</label>
-						<form:input path="studentAddress" id="studentAddress" ng-model="studentAddress"
-							cssClass="form-control" maxlength="40"/> 
-					   </form:form>
+						<form:form id="studentForm" modelAttribute="stdDetails" action="showSuccessPage" method="POST">
+							
+							<label>Student ID <span style="color: red;">*</span></label>
+							<form:input path="studentID" ng-model="studentID" id="studentID"
+								cssClass="form-control" maxlength="5"
+								onkeyup="integersOnly(this)" />
+								
+							<label>Student Name :</label>
+							<form:input path="studentName" id="studentName"
+								ng-model="studentName" cssClass="form-control" maxlength="30"
+								onkeyup="validateCharacters(this)" />
+								
+							<label>Student Age</label>
+							<form:input path="studentAge" id="studentAge"
+								ng-model="studentAge" cssClass="form-control" maxlength="2"
+								onkeyup="integersOnly(this)" />
+								
+							<label>Student College Name : </label>
+							<form:input path="studentCollegeName" id="studentCollegeName"
+								ng-model="studentCollegeName" cssClass="form-control"
+								maxlength="40" />
+								
+							<label>Student Department</label>
+							<form:select path="studentDepartment" id="studentDepartment"
+								ng-model="studentDepartment" cssClass="form-control">
+								<form:option value="0">--Select--</form:option>
+								<form:option value="CSE">CSE</form:option>
+								<form:option value="EEE">EEE</form:option>
+								<form:option value="ECE">ECE</form:option>
+								<form:option value="Mech">Mech</form:option>
+								<form:option value="Civil">Civil</form:option>
+								</form:select>
+								
+							<label>Student Academic-Year</label>
+							<form:select path="studentAcademicYear" id="studentAcademicYear"
+								ng-model="studentAcademicYear" cssClass="form-control">
+								<form:option value="0">--Select--</form:option>
+								<form:option value="2018-19">2018-19</form:option>
+								<form:option value="2017-18">2017-18</form:option>
+								<form:option value="2016-17">2016-17</form:option>
+							</form:select>
+							
+							<label>Student Address</label>
+							<form:textarea path="studentAddress" id="studentAddress"
+								ng-model="studentAddress" cssClass="form-control" maxlength="40" />
+								
+						</form:form>
 					</div>
-				    <div class="card-footer">
-						<input type="button" value="Submit" class="btn btn-sm" ng-click="createStudent()" > <!-- ng-click="createStudent()" -->
-					</div>  
+					
+					<div class="card-footer">
+						<input type="button" value="Submit" class="btn btn-sm"
+							ng-click="createStudent()">
+						<!-- ng-click="createStudent()" -->
+					</div>
 				</div>
 			</div>
 
-			<div class="col-md-8">        <!-- ng-if="studentsList.length > 0" -->
+			<div class="col-md-8">
+				<!-- ng-if="studentsList.length > 0" -->
 				<table class="table table-striped table-bordered table-hover" id="studentDetailsTable">
 					<thead>
 						<tr>
@@ -83,7 +109,7 @@
 							<th>Student Department</th>
 							<th>Student Academic-Year</th>
 							<th>Student Address</th>
-							<th colspan="2">Action</th>
+							<!-- <th colspan="2">Action</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -95,8 +121,10 @@
 							<td>{{student.studentDepartment}}</td>
 							<td>{{student.studentAcademicYear}}</td>
 							<td>{{student.studentAddress}}</td>
-							<td><a ng-click="editStudent('{{student.studentID}}')" class="edit-button">Edit</a> </td>
-							<td><a ng-click="deleteStudent('{{student.studentID}}')" class="delete-button">Delete</a></td>
+							<!-- <td><a ng-click="editStudent('{{student.studentID}}')"
+								class="edit-button">Edit</a></td>
+							<td><a ng-click="deleteStudent('{{student.studentID}}')"
+								class="delete-button">Delete</a></td> -->
 						</tr>
 					</tbody>
 				</table>

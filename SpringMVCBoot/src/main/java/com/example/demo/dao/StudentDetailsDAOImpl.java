@@ -11,12 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.StudentDetails;
+import com.example.demo.repositories.StudentRepository;
 
 @Repository
 public class StudentDetailsDAOImpl implements StudentDeatailsDAO{
 
 	@Autowired
 	private SessionFactory sessionFactory; 
+	
+	@Autowired
+	private StudentRepository studentRepository;
 	
 	private static final Logger log = LoggerFactory.getLogger(StudentDetailsDAOImpl.class);
 	
@@ -33,14 +37,13 @@ public class StudentDetailsDAOImpl implements StudentDeatailsDAO{
 
 	@Override
 	public boolean isStudentExist(StudentDetails studentDetails) {
-		Session session = sessionFactory.openSession();
 		return false;
 	}
 
 	@Override
 	public void saveStudent(StudentDetails studentDetails) {
-		Session session = sessionFactory.openSession();
-		session.save(studentDetails);
+		log.info("StudentAcademicYear........in DAO....."+studentDetails.getStudentAcademicYear());
+		studentRepository.save(studentDetails);
 	}
 
 }
