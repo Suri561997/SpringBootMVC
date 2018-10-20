@@ -37,18 +37,25 @@ public class StudentDetailsController {
 		return list;
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "createStudent",method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<?> createStudent(@ModelAttribute("studentDetails") StudentDetails studentDetails){
+	public ResponseEntity<String> createStudent(@ModelAttribute("studentDetails") StudentDetails studentDetails){
 		System.out.println("----------"+studentDetails.getStudentName());
 		/*if(studentService.isStudentExist(studentDetails)) {
 			log.error("Unable to create. A Student with ID {} already exist,"+studentDetails.getStudentID());
 			return new ResponseEntity<String>("",HttpStatus.CONFLICT);
 		}*/
 		
-		studentService.saveStudent(studentDetails);
-		
-		return new ResponseEntity<String>("Student Added Successfully.", HttpStatus.CREATED);
+		Integer id = studentService.saveStudent(studentDetails);
+		ResponseEntity<String> responseEntity =  null;
+		if(id != null) {
+		  responseEntity = new ResponseEntity<>("Student Added Successfully.", HttpStatus.OK);
+		}
+		else {
+			responseEntity = new ResponseEntity<>("Failure..", HttpStatus.NOT_ACCEPTABLE);
+		}
+		return responseEntity;
 	}
 	
 }

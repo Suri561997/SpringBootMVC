@@ -10,7 +10,7 @@ public interface StudentDeatailsDAO {
 	
 	public boolean isStudentExist(StudentDetails studentDetails);
 
-	public void saveStudent(StudentDetails studentDetails);
+	public int saveStudent(StudentDetails studentDetails);
 	
 	
 }

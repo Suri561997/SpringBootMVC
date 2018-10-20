@@ -9,18 +9,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.StudentDetails;
-import com.example.demo.repositories.StudentRepository;
 
 @Repository
+@Transactional
 public class StudentDetailsDAOImpl implements StudentDeatailsDAO{
 
 	@Autowired
 	private SessionFactory sessionFactory; 
-	
-	@Autowired
-	private StudentRepository studentRepository;
 	
 	private static final Logger log = LoggerFactory.getLogger(StudentDetailsDAOImpl.class);
 	
@@ -41,9 +39,10 @@ public class StudentDetailsDAOImpl implements StudentDeatailsDAO{
 	}
 
 	@Override
-	public void saveStudent(StudentDetails studentDetails) {
-		log.info("StudentAcademicYear........in DAO....."+studentDetails.getStudentAcademicYear());
-		studentRepository.save(studentDetails);
+	public int saveStudent(StudentDetails studentDetails) {
+		Session session = sessionFactory.getCurrentSession();
+        int id = (Integer) session.save(studentDetails);
+		return id;
 	}
 
 }

@@ -101,7 +101,11 @@
 				<!-- ng-if="studentsList.length > 0" -->
 				<table class="table table-striped table-bordered table-hover" id="studentDetailsTable">
 					<thead>
+					    <tr>
+					     <th colspan="8" style="text-align: center;">Student Details</th>
+					    </tr>
 						<tr>
+						    <th>Sl.No</th>
 							<th>Student ID</th>
 							<th>Student Name</th>
 							<th>Student Age</th>
@@ -114,6 +118,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="student in studentsList">
+						    <td>{{$index+1}}</td>
 							<td>{{student.studentID}}</td>
 							<td>{{student.studentName}}</td>
 							<td>{{student.studentAge}}</td>
