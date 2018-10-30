@@ -27,7 +27,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">Link 1</a></li>
 				<li class="nav-item"><a class="nav-link" href="#"
-					ng-click="getAllStudentDetails()">Link 2</a></li>
+					ng-click="getAllStudentDetails()">Get Student Data</a></li>
 				<li class="nav-item"><a class="nav-link" href="#"
 					ng-click="generatePDF()">Link 3</a></li>
 			</ul>
